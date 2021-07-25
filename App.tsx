@@ -6,6 +6,7 @@ import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 
+// type check route name and params
 export type RootStackParamList = {
   Home: undefined,
   Profile: { name: string }
@@ -13,20 +14,13 @@ export type RootStackParamList = {
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
-
 export default function App() {
   return (
     <NavigationContainer>
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar />}
+          {Platform.OS === 'ios' && <StatusBar barStyle='dark-content' />}
             <Stack.Navigator initialRouteName="Home">
-              <Stack.Screen 
+              <Stack.Screen
                   name="Home"
                   component={HomeScreen}
               />
@@ -40,3 +34,9 @@ export default function App() {
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
