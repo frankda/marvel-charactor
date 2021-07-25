@@ -1,28 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { IHero } from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 interface IListItemProps {
-    img: string,
-    name: string
+    onPress: Function,
+    heroDetails: IHero
 }
 
-const ListItem = (props: IListItemProps) => {
+const ListItem = ({heroDetails, onPress}: IListItemProps) => {
     return (
         <View>
             <Pressable 
                 style={styles.container}
                 onPress={() => {
-                    
-                    // navigation.navigate('Profile')
+                    onPress(heroDetails)
                 }}
             >
                 <Image 
                     style={styles.thumbnail} 
-                    source={{uri: props.img}} 
+                    source={{uri: `${heroDetails.thumbnail.path}.${heroDetails.thumbnail.extension}`}} 
                 />
-                <Text style={styles.title}>{props.name}</Text>
+                <Text style={styles.title}>{heroDetails.name}</Text>
                 <Icon name="chevron-right" size={30} color="#000" />
             </Pressable>
         </View>
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         height: 60,
         borderBottomColor: 'lightgrey',
         borderBottomWidth: 1,
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        alignItems: 'center'
     },
     thumbnail: {
         width: 40,
@@ -48,6 +49,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         flex: 1,
-        marginLeft: 24
+        marginLeft: 24,
     }
 })

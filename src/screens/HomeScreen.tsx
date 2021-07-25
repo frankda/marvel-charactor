@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TextInput, ScrollView, FlatList, Text } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../App';
-import { listCharacters } from '../api/GetMarvel';
+import { listCharacters } from '../api/MarvelApi';
 import ListItem from '../components/ListItem';
 
-type ProfileScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'Home'
->;
-interface IHero {
+type Props = StackScreenProps<RootStackParamList, 'Home'>;
+
+// interface for returned hero data
+export interface IHero {
     id: number,
     name: string,
+    resourceURI: string,
+    description: string,
     thumbnail: {
         path: string,
         extension: string
     },
-    onPress: Function
+    comics: object,
 }
 
-const HomeScreen = ({ navigation }: { navigation: ProfileScreenNavigationProp }) => {
+const HomeScreen = ({ navigation }: Props) => {
     const [ heroes, setHeroes ] = useState([] as IHero[]);
     const [ filteredHeroes, setFilteredHeroes ] =useState([] as IHero[]);
     const [ searchCopy, setSearchCopy ] = useState('');
@@ -39,8 +40,13 @@ const HomeScreen = ({ navigation }: { navigation: ProfileScreenNavigationProp })
         handleSearch(searchCopy);
     }, [heroes, searchCopy])
     
-    const changeToProfileScreen = () => {
-        navigation.navigate('Profile', { name: 'hi' })
+    const changeToProfileScreen = (item: IHero) => {
+        const profileDetail = {
+            name: item.name,
+            comics: item.comics,
+            description: item.description
+        }
+        navigation.navigate('Profile', profileDetail)
     }
 
     const handleSearch = (text: string) => {
@@ -71,8 +77,7 @@ const HomeScreen = ({ navigation }: { navigation: ProfileScreenNavigationProp })
                 renderItem={
                     ({item}: {item: IHero}) => 
                             <ListItem
-                                name={item.name}
-                                img={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                                heroDetails={item}
                                 onPress={changeToProfileScreen}
                             />
                 }
