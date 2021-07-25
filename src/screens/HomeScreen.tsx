@@ -7,7 +7,8 @@ import ListItem from '../components/ListItem';
 
 type Props = StackScreenProps<RootStackParamList, 'Home'>;
 
-// interface for returned hero data
+// Interface for returned hero data
+// Only includes properties will be used
 export interface IHero {
     id: number,
     name: string,
@@ -61,28 +62,33 @@ const HomeScreen = ({ navigation }: Props) => {
         }
     }
 
+    const renderSearchSection = () => {
+        return (
+            <>
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="Search for your hero!"
+                    onChangeText={text => handleSearch(text)}
+                    defaultValue={searchCopy}
+                />
+                <Text style={styles.resultsCount}>{filteredHeroes.length} results</Text>
+            </>
+        )
+    }
+
     return (
-        <ScrollView>
-            <TextInput
-                style={styles.textInput}
-                placeholder="Search for your hero!"
-                onChangeText={text => handleSearch(text)}
-                defaultValue={searchCopy}
-            />
-            <Text style={styles.resultsCount}>{filteredHeroes.length} results</Text>
-            <FlatList 
-                nestedScrollEnabled
-                data={filteredHeroes}
-                keyExtractor={item => item.id.toString()}
-                renderItem={
-                    ({item}: {item: IHero}) => 
-                            <ListItem
-                                heroDetails={item}
-                                onPress={changeToProfileScreen}
-                            />
-                }
-            />
-        </ScrollView>
+        <FlatList
+            ListHeaderComponent={renderSearchSection()}
+            data={filteredHeroes}
+            keyExtractor={item => item.id.toString()}
+            renderItem={
+                ({item}: {item: IHero}) => 
+                        <ListItem
+                            heroDetails={item}
+                            onPress={changeToProfileScreen}
+                        />
+            }
+        />
     )
 }
 
