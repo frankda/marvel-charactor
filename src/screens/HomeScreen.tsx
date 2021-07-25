@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TextInput, View, FlatList, Text } from 'react-native';
+import { StyleSheet, TextInput, ScrollView, FlatList, Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../App';
 import { listCharacters } from '../api/GetMarvel';
@@ -56,7 +56,7 @@ const HomeScreen = ({ navigation }: { navigation: ProfileScreenNavigationProp })
     }
 
     return (
-        <View>
+        <ScrollView>
             <TextInput
                 style={styles.textInput}
                 placeholder="Search for your hero!"
@@ -65,6 +65,7 @@ const HomeScreen = ({ navigation }: { navigation: ProfileScreenNavigationProp })
             />
             <Text style={styles.resultsCount}>{filteredHeroes.length} results</Text>
             <FlatList 
+                nestedScrollEnabled
                 data={filteredHeroes}
                 keyExtractor={item => item.id.toString()}
                 renderItem={
@@ -76,7 +77,7 @@ const HomeScreen = ({ navigation }: { navigation: ProfileScreenNavigationProp })
                             />
                 }
             />
-        </View>
+        </ScrollView>
     )
 }
 
