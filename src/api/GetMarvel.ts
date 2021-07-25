@@ -10,8 +10,6 @@ const generateHash = ( privateKey: string , publicKey: string , timestamp: any )
 export const listCharacters = async () => {
     const timestamp = +new Date();
     const hash = generateHash(privateKey , publicKey , timestamp);
-    console.log(hash);
-    
 
     const params = `apikey=${ publicKey }&ts=${ timestamp }&hash=${ hash }`;
     return fetch(`https://gateway.marvel.com/v1/public/characters?${ params }`)
