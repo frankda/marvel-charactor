@@ -22,7 +22,6 @@ const chartConfig = {
 const Chart = ({ chartData }: { chartData: IChart[] }) => {
     const [pieData, setPietData] = useState([] as IChart[])
 
-
     useEffect(() => {
         const data = chartData.map((item, index) => {
             return {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { StackScreenProps } from '@react-navigation/stack';
-import { NavigatorScreenParams } from '@react-navigation/native';
-import { StyleSheet, Text, View, FlatList, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, Image, ScrollView } from 'react-native'
 import { RootStackParamList } from '../../App';
 import { IHero } from './HomeScreen';
 import Chart, { IChart } from '../components/PieChart';
@@ -16,7 +15,7 @@ export interface IComics {
 const ProfileScreen = ({ route }: Props) => {
     const { params }: { params: IHero } = route;
 
-    const chartData = [
+    const chartData: IChart[] = [
         {
             name: 'Comics',
             count: params.comics.available
@@ -62,7 +61,7 @@ const ProfileScreen = ({ route }: Props) => {
     )
 }
 
-export default ProfileScreen
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -70,7 +69,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 32
     },
-    profileContainer: {},
     thumbnail: {
         height: 200,
         width: 200,
@@ -92,4 +90,4 @@ const styles = StyleSheet.create({
     comicsName: {
         textAlign: 'center'
     }
-})
+});

@@ -37,7 +37,7 @@ export interface IHero {
 const HomeScreen = ({ navigation }: Props) => {
     const [ heroes, setHeroes ] = useState([] as IHero[]);
     const [ filteredHeroes, setFilteredHeroes ] =useState([] as IHero[]);
-    const [ searchCopy, setSearchCopy ] = useState('');
+    const [ searchCopy, setSearchCopy ] = useState('' as string);
 
     const fetchHeroesData = async () => {
         const res = await listCharacters();

@@ -2,14 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { IHero } from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 
 interface IListItemProps {
     onPress: Function,
     heroDetails: IHero
 }
 
-const ListItem = ({heroDetails, onPress}: IListItemProps) => {
+const ListItem = ({ heroDetails, onPress }: IListItemProps) => {
     return (
         <View>
             <Pressable 
