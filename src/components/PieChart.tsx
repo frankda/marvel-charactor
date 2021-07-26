@@ -19,6 +19,7 @@ const chartConfig = {
     barPercentage: 0.5,
     useShadowColorFromDataset: false
 };
+
 const Chart = ({ chartData }: { chartData: IChart[] }) => {
     const [pieData, setPietData] = useState([] as IChart[])
 
