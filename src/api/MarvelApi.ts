@@ -15,7 +15,7 @@ export const listCharacters = async () => {
             .then( response => response.json());
 };
 
-export const listComics = async (url: string) => {
+export const marvelRequest = async (url: string) => {
     const params = generateParams(privateKey , publicKey);
     return fetch(`${url}?${ params }`)
     .then( response => response.json());

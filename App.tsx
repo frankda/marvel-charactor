@@ -3,13 +3,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View, StatusBar, Platform } from 'react-native';
-import HomeScreen from './src/screens/HomeScreen';
+import HomeScreen, { IHero } from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 
-// type check route name and params
+// params for each screen
 export type RootStackParamList = {
   Home: undefined,
-  Profile: { name: string }
+  Profile: IHero
 }
 
 const Stack = createStackNavigator<RootStackParamList>();

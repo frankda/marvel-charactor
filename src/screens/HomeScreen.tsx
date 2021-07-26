@@ -4,6 +4,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../../App';
 import { listCharacters } from '../api/MarvelApi';
 import ListItem from '../components/ListItem';
+import { IComics } from './ProfileScreen';
 
 type Props = StackScreenProps<RootStackParamList, 'Home'>;
 
@@ -18,7 +19,19 @@ export interface IHero {
         path: string,
         extension: string
     },
-    comics: object,
+    comics: {
+        items: IComics[],
+        available: number
+    },
+    series: {
+        available: number
+    },
+    stories: {
+        available: number
+    },
+    events: {
+        available: number
+    }
 }
 
 const HomeScreen = ({ navigation }: Props) => {
@@ -42,12 +55,7 @@ const HomeScreen = ({ navigation }: Props) => {
     }, [heroes, searchCopy])
     
     const changeToProfileScreen = (item: IHero) => {
-        const profileDetail = {
-            name: item.name,
-            comics: item.comics,
-            description: item.description
-        }
-        navigation.navigate('Profile', profileDetail)
+        navigation.navigate('Profile', item)
     }
 
     const handleSearch = (text: string) => {
