@@ -1,6 +1,6 @@
 # Marvel Characters
 
-This is a boilerplate for expo project with typescript integration.
+This is an React Native expo project with typescript integration.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ Install Expo Cli
 npm install --global expo-cli
 ```
 
-Use
+Install dependencies
 
 ```bash
 yarn
