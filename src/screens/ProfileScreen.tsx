@@ -45,8 +45,8 @@ const ProfileScreen = ({ route }: Props) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Image
-                style={styles.thumbnail} 
-                source={{uri: `${params.thumbnail.path}.${params.thumbnail.extension}`}} 
+                style={styles.thumbnail}
+                source={{uri: `${params.thumbnail.path}.${params.thumbnail.extension}`}}
             />
             <Text style={styles.title}>{params.name}</Text>
             <Text style={styles.description}>{params.description ? params.description : 'No available description'}</Text>
@@ -55,7 +55,9 @@ const ProfileScreen = ({ route }: Props) => {
                 chartData={chartData}
             />
 
-            <Text style={styles.sectionTitle}>Comics they’ve appeared in</Text>
+            <Text style={styles.sectionTitle}>
+                {params.comics.items.length ? 'Comics they’ve appeared in' : 'Cannot find any comics related'}
+            </Text>
             {renderComicsList()}
         </ScrollView>
     )
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
         fontSize: 24,
+        marginTop: 24,
         marginBottom: 12
     },
     comicsName: {
